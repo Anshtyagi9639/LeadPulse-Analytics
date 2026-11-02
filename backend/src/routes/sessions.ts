@@ -1,5 +1,5 @@
 import { Router, type Request, type Response } from 'express';
-import rateLimit from 'express-rate-limit';
+import { rateLimit } from 'express-rate-limit';
 import multer from 'multer';
 import { z } from 'zod';
 import { AI_TASKS, generateInsight, type AiClient } from '../ai/insights.js';

@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
-import rateLimit from 'express-rate-limit';
-import helmet from 'helmet';
+import { rateLimit } from 'express-rate-limit';
+import * as helmetModule from 'helmet';
 import { createOpenAiClient, type AiClient } from './ai/insights.js';
 import type { AppConfig } from './config.js';
 import { errorHandler, notFoundHandler } from './lib/errors.js';
@@ -13,6 +13,10 @@ import { ReportService } from './session/reports.js';
 import { SessionService } from './session/service.js';
 import { SessionStore } from './session/store.js';
 import { TemplateStore } from './session/templates.js';
+
+// helmet ships separate ESM and CommonJS typings that both declare `helmet as default`. Taking `.default` from the
+// namespace resolves to the middleware factory under either module interpretation (a default import does not).
+const helmet = helmetModule.default;
 
 export interface AppDeps {
   aiClient?: AiClient | null;
