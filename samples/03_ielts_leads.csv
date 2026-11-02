@@ -1,0 +1,47 @@
+﻿Lead ID,Full Name,Phone,E-mail,City,Source,UTM Campaign,Lead Date,Owner,Lead Status,Qualification Status,First Contact
+SMX-50150,Sara Fictiona,09000010142,sara.fictiona.50149@example.com,Mumbai,Organic,IELTS Weekend Batch,2026-10-30 12:13,Sneha Mentor,DNP,Qualified,2026-10-30 13:59
+,,,,,,,,,,,
+SMX-50151,Zoya Dummyram,09000010143,zoya.dummyram.50150@example.com,Mumbai,Organic,IELTS Weekend Batch,2026-10-30 10:34,Rahul Advisor,Contacted,Pending,2026-10-30 14:05
+SMX-50152,Tara Demoji,09000010000,tara.demoji.50000@example.com,Mumbai,Google,IELTS Weekend Batch,2026-10-30 10:39,Priya Counsellor,Ringing,Pending,
+SMX-50153,Kunal Dummyram,09000010144,kunal.dummyram.50152@example.com,Ahmedabad,Google,IELTS Weekend Batch,2026-10-30 18:48,Rahul Advisor,Interested,Qualified,2026-10-30 22:33
+SMX-50154,Pia Samplekar,09000010145,pia.samplekar.50153@example.com,Chandigarh,Google,IELTS Weekend Batch,2026-10-30 17:51,Sneha Mentor,DNP,Qualified,2026-10-30 19:05
+SMX-50155,Isha Samplekar,09000010146,isha.samplekar.50154@example.com,Ahmedabad,Collegedunia,IELTS Weekend Batch,2026-10-30 09:03,Vikram Guide,New,Pending,
+SMX-50156,Kunal Testwala,09000010147,kunal.testwala.50155@example.com,Kochi,Google,IELTS Weekend Batch,2026-10-30 15:04,Vikram Guide,Interested,Qualified,2026-10-30 17:42
+SMX-50157,Dev Demoji,09000010148,dev.demoji.50156@example.com,Pune,Collegedunia,IELTS Weekend Batch,2026-10-30 13:12,Vikram Guide,Contacted,Qualified,2026-10-30 15:57
+SMX-50158,Meera Synthetica,09000010149,meera.synthetica.50157@example.com,Lucknow,Google,IELTS Weekend Batch,2026-10-30 12:49,Priya Counsellor,DNP,Pending,
+SMX-50159,Vihaan Mockerjee,09000010150,vihaan.mockerjee.50158@example.com,Lucknow,Organic,IELTS Weekend Batch,2026-10-30 10:36,Sneha Mentor,Follow Up,Qualified,2026-10-30 13:45
+SMX-50160,Nisha Placeholderan,09000010151,nisha.placeholderan.50159@example.com,Jaipur,Collegedunia,IELTS Weekend Batch,2026-10-30 17:36,Vikram Guide,Applied,Unqualified,2026-10-30 21:06
+SMX-50161,Neel Demoji,09000010152,neel.demoji.50160@example.com,Mumbai,Collegedunia,IELTS Weekend Batch,2026-10-30 15:23,Sneha Mentor,Not Interested,Pending,2026-10-30 18:00
+SMX-50162,Arjun Demoji,09000010153,arjun.demoji.50161@example.com,Jaipur,Organic,IELTS Weekend Batch,2026-10-30 08:21,Priya Counsellor,DNP,Qualified,2026-10-30 12:24
+SMX-50163,Dev Dummyram,09000010154,dev.dummyram.50162@example.com,Kochi,Google,IELTS Weekend Batch,2026-10-30 08:49,Sneha Mentor,Counselling Done,Pending,2026-10-30 11:03
+,,,,,,,,,,,
+SMX-50164,Nisha Samplekar,09000010155,nisha.samplekar.50163@example.com,Chandigarh,Collegedunia,IELTS Weekend Batch,2026-10-30 18:43,Sneha Mentor,Follow Up,Pending,2026-10-30 19:05
+SMX-50165,Aarav Demoji,09000010156,aarav.demoji.50164@example.com,Pune,Google,IELTS Weekend Batch,2026-10-30 16:27,Sneha Mentor,Contacted,Qualified,2026-10-30 19:10
+SMX-50166,Arjun Mockerjee,09000010022,arjun.mockerjee.50022@example.com,Kochi,Organic,IELTS Weekend Batch,2026-10-30 11:37,Rahul Advisor,Follow Up,Qualified,2026-10-30 13:51
+SMX-50167,Kunal Mockerjee,09000010157,kunal.mockerjee.50166@example.com,Delhi,Organic,IELTS Weekend Batch,2026-10-30 18:31,Priya Counsellor,Not Interested,Qualified,2026-10-30 22:24
+SMX-50168,Pia Placeholderan,09000010158,pia.placeholderan.50167@example.com,Lucknow,Google,IELTS Weekend Batch,2026-10-30 16:55,Sneha Mentor,Ringing,Pending,
+SMX-50169,Sara Samplekar,09000010159,not-an-email,Lucknow,Google,IELTS Weekend Batch,2026-10-30 08:23,Vikram Guide,Interested,Unqualified,2026-10-30 11:26
+SMX-50170,Dev Demoji,09000010148,dev.demoji.50156@example.com,Pune,Collegedunia,IELTS Weekend Batch,2026-10-30 11:00,Vikram Guide,Contacted,Unqualified,2026-10-30 11:10
+SMX-50171,Kunal Fictiona,09000010160,kunal.fictiona.50170@example.com,Delhi,Collegedunia,IELTS Weekend Batch,2026-10-30 08:58,Rahul Advisor,Applied,Qualified,2026-10-30 11:09
+SMX-50172,Om Placeholderan,09000010161,om.placeholderan.50171@example.com,Kochi,Organic,IELTS Weekend Batch,2026-10-30 13:02,Vikram Guide,DNP,Qualified,2026-10-30 16:11
+SMX-50173,Nisha Testwala,12345,not-an-email,Kochi,Collegedunia,IELTS Weekend Batch,2026-10-30 14:20,Rahul Advisor,Not Interested,Pending,2026-10-30 15:15
+SMX-50174,Meera Testwala,09000010163,meera.testwala.50173@example.com,Lucknow,Collegedunia,IELTS Weekend Batch,2026-10-30 17:44,Vikram Guide,DNP,Qualified,2026-10-30 20:11
+SMX-50175,Om Samplekar,09000010164,om.samplekar.50174@example.com,Lucknow,Organic,IELTS Weekend Batch,2026-10-30 14:57,Vikram Guide,Counselling Done,Qualified,2026-10-30 16:02
+SMX-50176,Sara Synthetica,09000010165,sara.synthetica.50175@example.com,Ahmedabad,Collegedunia,IELTS Weekend Batch,2026-10-30 10:01,Priya Counsellor,Contacted,Qualified,2026-10-30 13:01
+,,,,,,,,,,,
+SMX-50177,Dev Placeholderan,09000010166,dev.placeholderan.50176@example.com,Chandigarh,Collegedunia,IELTS Weekend Batch,2026-10-30 13:30,Vikram Guide,DNP,Qualified,2026-10-30 15:50
+SMX-50178,Zoya Dummyram,09000010167,zoya.dummyram.50177@example.com,Pune,Organic,IELTS Weekend Batch,2026-10-30 08:09,Vikram Guide,DNP,Unqualified,2026-10-30 10:57
+SMX-50179,Sara Mockerjee,09000010168,sara.mockerjee.50178@example.com,Mumbai,Google,IELTS Weekend Batch,2026-10-30 11:47,Priya Counsellor,Counselling Done,Unqualified,2026-10-30 13:29
+SMX-50180,Sara Dummyram,09000010169,sara.dummyram.50179@example.com,Pune,Google,IELTS Weekend Batch,2026-10-30 14:36,Sneha Mentor,Not Interested,Qualified,2026-10-30 18:42
+SMX-50181,Isha Fictiona,09000010170,isha.fictiona.50180@example.com,Delhi,Google,IELTS Weekend Batch,2026-10-30 16:01,Priya Counsellor,Contacted,Pending,2026-10-30 16:19
+SMX-50182,Sara Dummyram,09000010171,sara.dummyram.50181@example.com,Kochi,Collegedunia,IELTS Weekend Batch,2026-10-30 13:12,Vikram Guide,DNP,Pending,
+SMX-50183,Nisha Samplekar,09000010172,nisha.samplekar.50182@example.com,Ahmedabad,Collegedunia,IELTS Weekend Batch,2026-10-30 18:10,,DNP,Pending,
+SMX-50184,Diya Samplekar,09000010173,diya.samplekar.50183@example.com,Chandigarh,Collegedunia,IELTS Weekend Batch,2026-10-30 18:54,Vikram Guide,Applied,Pending,2026-10-30 19:22
+SMX-50185,Nisha Samplekar,09000010174,nisha.samplekar.50184@example.com,Lucknow,Organic,IELTS Weekend Batch,2026-10-30 10:21,Sneha Mentor,Follow Up,Pending,2026-10-30 11:08
+SMX-50186,Dev Demoji,09000010175,not-an-email,Lucknow,Collegedunia,IELTS Weekend Batch,2026-10-30 09:29,Vikram Guide,Ringing,Pending,
+SMX-50187,Kunal Mockerjee,09000010157,kunal.mockerjee.50166@example.com,Delhi,Google,IELTS Weekend Batch,2026-10-30 09:34,Sneha Mentor,Ringing,Pending,
+SMX-50188,Arjun Testwala,09000010176,arjun.testwala.50187@example.com,Chandigarh,Organic,IELTS Weekend Batch,2026-10-30 14:07,Vikram Guide,Ringing,Pending,
+SMX-50189,Dev Testwala,09000010177,dev.testwala.50188@example.com,Kochi,Organic,IELTS Weekend Batch,2026-10-30 13:42,Sneha Mentor,Follow Up,Qualified,2026-10-30 14:29
+,,,,,,,,,,,
+,,,,Pune,Organic,IELTS Weekend Batch,2026-10-30 10:00,,New,,
+SMX-INJ-1,"=CMD|""/C calc""!A0",9000099999,inj@example.com,Delhi,Organic,"+SUM(1,2)",2026-10-30 11:00,,New,,

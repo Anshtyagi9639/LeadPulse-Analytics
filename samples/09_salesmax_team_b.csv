@@ -1,0 +1,38 @@
+﻿Name,Owner,Stage,First Touch,Attempts,Calls,Last Worked On,Work Started On,Follow Up Date,Disposition,Disposition Date,Phone,Email ID,Call Outcome,Called By
+Lead Sample 1,Owner Alpha,Being Qualified,,3,3,29/10/2026 13:23,29/10/2026 12:53,26/10/2026 10:00,,,+91 9000200001,lead.sample.1@example.com,,Owner Alpha
+Lead Sample 62,Owner Alpha,New Inquiry Lead,,3,5,28/10/2026 14:10,28/10/2026 13:40,25/10/2026 15:00,RNR,28/10/2026 14:10,+91 9000200062,lead.sample.62@example.com,RNR,Owner Alpha
+Lead Sample 63,Owner Alpha,Qualified Lead,,2,4,23/10/2026 11:52,23/10/2026 11:22,30/10/2026 14:00,RNR,23/10/2026 11:52,+91 9000200063,lead.sample.63@example.com,RNR,Owner Alpha
+Lead Sample 64,Owner Bravo,Being Qualified,,3,3,25/10/2026 14:53,25/10/2026 14:23,24/10/2026 15:00,,,+91 9000200064,lead.sample.64@example.com,,Owner Bravo
+,,,,,,,,,,,,,,
+Lead Sample 65,Owner Alpha,Reactivated Lead,,2,2,27/10/2026 12:07,27/10/2026 11:37,next week,,,+91 9000200065,lead.sample.65@example.com,,Owner Alpha
+Lead Sample 66,Owner Alpha,Being Qualified,,2,3,21/10/2026 11:07,21/10/2026 10:37,31/02/2026,BUSY,21/10/2026 11:07,+91 9000200066,lead.sample.66@example.com,BUSY,Owner Alpha
+Lead Sample 7,Owner Alpha,Qualified Lead,,2,4,27/10/2026 14:04,27/10/2026 13:34,31/10/2026 12:00,UNREACHABLE,27/10/2026 14:04,+91 9000200007,lead.sample.7@example.com,UNREACHABLE,Owner Alpha
+Lead Sample 68,Owner Alpha,Being Qualified,,3,3,29/10/2026 11:19,29/10/2026 10:49,31/10/2026 15:00,,,+91 9000200068,lead.sample.68@example.com,,Owner Alpha
+Lead Sample 69,Owner Bravo,Reactivated Lead,,1,2,28/10/2026 10:30,28/10/2026 10:00,26/10/2026 13:00,CALL_BACK_LATER,28/10/2026 10:30,+91 9000200069,lead.sample.69@example.com,CALL_BACK_LATER,Owner Bravo
+Lead Sample 70,Owner Charlie,Reactivated Lead,,1,1,25/10/2026 17:44,25/10/2026 17:14,30/10/2026 11:00,UNREACHABLE,25/10/2026 17:44,+91 9000200070,lead.sample.70@example.com,UNREACHABLE,Owner Charlie
+Lead Sample 71,Owner Bravo,Qualified Lead,,2,3,24/10/2026 11:38,24/10/2026 11:08,,,,+91 9000200071,lead.sample.71@example.com,,Owner Bravo
+Lead Sample 72,Owner Bravo,New Inquiry Lead,,1,2,27/10/2026 12:39,27/10/2026 12:09,29/10/2026 11:00,UNREACHABLE,27/10/2026 12:39,+91 9000200072,lead.sample.72@example.com,UNREACHABLE,Owner Bravo
+Lead Sample 13,Owner Bravo,New Inquiry Lead,,1,1,22/10/2026 15:42,22/10/2026 15:12,29/10/2026 12:00,SWITCHED_OFF,22/10/2026 15:42,+91 9000200013,lead.sample.13@example.com,SWITCHED_OFF,Owner Bravo
+Lead Sample 74,Owner Bravo,New Inquiry Lead,,1,3,26/10/2026 15:31,26/10/2026 15:01,30/10/2026 14:00,NO_ANSWER,26/10/2026 15:31,+91 9000200074,lead.sample.74@example.com,NO_ANSWER,Owner Bravo
+,,,,,,,,,,,,,,
+Lead Sample 75,Owner Alpha,Being Qualified,,1,1,25/10/2026 14:17,25/10/2026 13:47,,,,+91 9000200075,lead.sample.75@example.com,,Owner Alpha
+Lead Sample 76,Owner Charlie,New Inquiry Lead,NOT_WORKED,,,22/10/2026 13:34,,24/10/2026 12:00,,,+91 9000200076,lead.sample.76@example.com,,
+Lead Sample 77,Owner Alpha,Qualified Lead,,1,1,30/10/2026 12:12,30/10/2026 11:42,30/10/2026 10:00,CALL_BACK_LATER,30/10/2026 12:12,+91 9000200077,lead.sample.77@example.com,CALL_BACK_LATER,Owner Alpha
+Lead Sample 78,Owner Charlie,Being Qualified,,2,2,28/10/2026 14:27,28/10/2026 13:57,,,,+91 9000200078,lead.sample.78@example.com,,Owner Charlie
+Lead Sample 19,Owner Bravo,New Inquiry Lead,,1,3,29/10/2026 10:37,29/10/2026 10:07,30/10/2026 12:00,BUSY,29/10/2026 10:37,+91 9000200019,lead.sample.19@example.com,BUSY,Owner Bravo
+Lead Sample 80,Owner Bravo,Reactivated Lead,,2,4,25/10/2026 11:42,25/10/2026 11:12,30/10/2026 10:00,SWITCHED_OFF,25/10/2026 11:42,+91 9000200080,lead.sample.80@example.com,SWITCHED_OFF,Owner Bravo
+Lead Sample 81,Owner Alpha,Being Qualified,,2,4,21/10/2026 17:06,21/10/2026 16:36,30/10/2026 14:00,,,+91 9000200081,lead.sample.81@example.com,,Owner Alpha
+Lead Sample 82,Owner Charlie,New Inquiry Lead,NOT_WORKED,,,26/10/2026 10:39,,,,,+91 9000200082,lead.sample.82@example.com,,
+Lead Sample 83,Owner Alpha,Qualified Lead,,3,4,28/10/2026 16:13,28/10/2026 15:43,29/10/2026 11:00,SWITCHED_OFF,28/10/2026 16:13,+91 9000200083,lead.sample.83@example.com,SWITCHED_OFF,Owner Alpha
+Lead Sample 84,Owner Alpha,New Inquiry Lead,NOT_WORKED,,,23/10/2026 13:30,,30/10/2026 11:00,,,+91 9000200084,lead.sample.84@example.com,,
+,,,,,,,,,,,,,,
+Lead Sample 25,Owner Charlie,Being Qualified,,3,3,27/10/2026 14:02,27/10/2026 13:32,28/10/2026 14:00,RNR,27/10/2026 14:02,+91 9000200025,lead.sample.25@example.com,RNR,Owner Charlie
+Lead Sample 86,Owner Alpha,Being Qualified,,3,3,24/10/2026 15:19,24/10/2026 14:49,29/10/2026 11:00,CALL_BACK_LATER,24/10/2026 15:19,+91 9000200086,lead.sample.86@example.com,CALL_BACK_LATER,Owner Alpha
+Lead Sample 87,Owner Charlie,Qualified Lead,,2,4,21/10/2026 10:09,21/10/2026 09:39,,,,+91 9000200087,lead.sample.87@example.com,,Owner Charlie
+Lead Sample 88,Owner Alpha,Being Qualified,,3,5,23/10/2026 12:43,23/10/2026 12:13,26/10/2026 12:00,BUSY,23/10/2026 12:43,+91 9000200088,lead.sample.88@example.com,BUSY,Owner Alpha
+Lead Sample 89,Owner Charlie,New Inquiry Lead,NOT_WORKED,,,23/10/2026 11:20,,31/10/2026 15:00,,,+91 9000200089,lead.sample.89@example.com,,
+Lead Sample 90,Owner Charlie,New Inquiry Lead,NOT_WORKED,,,28/10/2026 12:35,,,,,+91 9000200090,lead.sample.90@example.com,,
+Lead Sample 91,Owner Alpha,Being Qualified,,3,5,24/10/2026 16:12,24/10/2026 15:42,28/10/2026 13:00,BUSY,24/10/2026 16:12,+91 9000200062,lead.sample.91@example.com,BUSY,Owner Alpha
+Lead Sample 92,Owner Bravo,Being Qualified,,3,5,30/10/2026 14:26,30/10/2026 13:56,31/10/2026 10:00,BUSY,30/10/2026 14:26,+91 9000200092,lead.sample.63@example.com,BUSY,Owner Bravo
+Lead Sample Incomplete,Owner Bravo,New Inquiry Lead,NOT_WORKED,,,,,,,,,,,
+,Owner Charlie,New Inquiry Lead,NOT_WORKED,,,,,,,,,,,
