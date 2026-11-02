@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
 import * as helmetModule from 'helmet';
+import type { HelmetOptions } from 'helmet';
 import { createOpenAiClient, type AiClient } from './ai/insights.js';
 import type { AppConfig } from './config.js';
 import { errorHandler, notFoundHandler } from './lib/errors.js';
@@ -14,9 +15,15 @@ import { SessionService } from './session/service.js';
 import { SessionStore } from './session/store.js';
 import { TemplateStore } from './session/templates.js';
 
-// helmet ships separate ESM and CommonJS typings that both declare `helmet as default`. Taking `.default` from the
-// namespace resolves to the middleware factory under either module interpretation (a default import does not).
-const helmet = helmetModule.default;
+// helmet ships ESM and CommonJS builds whose typings both declare `helmet as default`, but which one TypeScript picks
+// for this ESM file depends on the installer and resolver (Vercel resolves the CommonJS typings, where the default
+// import is the whole module namespace and is not callable). Unwrap at runtime and type the factory explicitly so the
+// build does not depend on that choice.
+type HelmetFactory = (options?: Readonly<HelmetOptions>) => express.RequestHandler;
+const helmetExport: unknown = helmetModule.default;
+const helmet = (
+  typeof helmetExport === 'function' ? helmetExport : (helmetExport as { default: unknown }).default
+) as HelmetFactory;
 
 export interface AppDeps {
   aiClient?: AiClient | null;
