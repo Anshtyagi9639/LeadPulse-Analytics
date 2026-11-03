@@ -113,7 +113,7 @@ the deploy as failed and keeps serving the previous one.
 |---|---|---|
 | Vercel (frontend) | `NEXT_PUBLIC_API_URL` | `https://leadpulse-analytics-1.onrender.com` (Render service URL, no trailing slash, without `/api`). Public by design; holds no secret. |
 | Render (API) | `NODE_ENV` | `production` |
-| Render (API) | `CORS_ORIGINS` | `https://lead-pulse-analytics-e8c7.vercel.app` — the exact browser origin(s), comma-separated, no `*`, no path. Required in production: the API refuses to start without it. |
+| Render (API) | `CORS_ORIGINS` | `https://lead-pulse-analytics-rsc5.vercel.app,https://lead-pulse-analytics-e8c7.vercel.app` — the exact browser origin(s), comma-separated, no `*`, no path. Required in production: the API refuses to start without it. |
 | Render (API) | `TRUST_PROXY` | `1` |
 | Render (API) | `CONFIG_DIR` | `/var/data/leadpulse` (on the persistent disk) |
 | Render (API) | `OPENAI_API_KEY` | secret, entered in the Render dashboard only |

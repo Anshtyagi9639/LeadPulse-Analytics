@@ -4,6 +4,7 @@ import { loadConfig } from '../src/config.js';
 import { makeTestApp } from './helpers.js';
 
 const ALLOWED = 'https://lead-pulse-analytics-e8c7.vercel.app';
+const SECOND = 'https://lead-pulse-analytics-rsc5.vercel.app';
 const CLIENT = '3f2b8c1e-7a4d-4e9b-9c2a-1d5e6f7a8b9c';
 
 type Ctx = Awaited<ReturnType<typeof makeTestApp>>;
@@ -13,7 +14,7 @@ describe('CORS', () => {
 
   beforeAll(async () => {
     // Trailing slash and spaces as an operator might type them into CORS_ORIGINS.
-    const corsOrigins = loadConfig({ NODE_ENV: 'test', CORS_ORIGINS: ` ${ALLOWED}/ , http://localhost:3000` }).corsOrigins;
+    const corsOrigins = loadConfig({ NODE_ENV: 'test', CORS_ORIGINS: ` ${ALLOWED}/ , ${SECOND},http://localhost:3000` }).corsOrigins;
     ctx = await makeTestApp({ corsOrigins });
   });
   afterAll(async () => ctx.cleanup());
@@ -40,6 +41,46 @@ describe('CORS', () => {
       .send({ reportingDate: '2026-11-03' });
     expect(res.status).toBe(201);
     expect(res.headers['access-control-allow-origin']).toBe(ALLOWED);
+    expect(res.headers['access-control-expose-headers']).toContain('Content-Disposition');
+  });
+
+  it('allows each origin of a comma-separated list, answering with that exact origin', async () => {
+    const res = await request(ctx.app)
+      .options('/api/sessions')
+      .set('Origin', SECOND)
+      .set('Access-Control-Request-Method', 'POST')
+      .set('Access-Control-Request-Headers', 'content-type,x-client-id');
+    expect(res.status).toBe(204);
+    expect(res.headers['access-control-allow-origin']).toBe(SECOND);
+    expect(res.headers.vary).toContain('Origin');
+  });
+
+  it('answers the upload preflight (multipart body, X-Client-Id only)', async () => {
+    const res = await request(ctx.app)
+      .options(`/api/sessions/${CLIENT}/files`)
+      .set('Origin', ALLOWED)
+      .set('Access-Control-Request-Method', 'POST')
+      .set('Access-Control-Request-Headers', 'x-client-id');
+    expect(res.status).toBe(204);
+    expect(res.headers['access-control-allow-origin']).toBe(ALLOWED);
+  });
+
+  it('keeps CORS headers on API errors so the browser shows the real error, not a CORS failure', async () => {
+    const res = await request(ctx.app).get(`/api/sessions/${CLIENT}`).set('Origin', ALLOWED).set('X-Client-Id', CLIENT);
+    expect(res.status).toBe(404);
+    expect(res.body.error.code).toBe('SESSION_NOT_FOUND');
+    expect(res.headers['access-control-allow-origin']).toBe(ALLOWED);
+  });
+
+  it('exposes Content-Disposition so downloads keep their file names', async () => {
+    const created = await request(ctx.app).post('/api/sessions').set('Origin', ALLOWED).set('X-Client-Id', CLIENT).send({ reportingDate: '2026-11-03' });
+    const res = await request(ctx.app)
+      .get(`/api/sessions/${created.body.id}/validation-errors.csv`)
+      .set('Origin', ALLOWED)
+      .set('X-Client-Id', CLIENT);
+    expect(res.status).toBe(200);
+    expect(res.headers['access-control-allow-origin']).toBe(ALLOWED);
+    expect(res.headers['content-disposition']).toMatch(/attachment; filename=/);
     expect(res.headers['access-control-expose-headers']).toContain('Content-Disposition');
   });
 

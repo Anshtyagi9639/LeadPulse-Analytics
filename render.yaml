@@ -30,7 +30,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: CORS_ORIGINS
-        value: https://lead-pulse-analytics-e8c7.vercel.app
+        value: https://lead-pulse-analytics-rsc5.vercel.app,https://lead-pulse-analytics-e8c7.vercel.app
       # Render terminates TLS in front of the service; one proxy hop gives rate limits the real client IP.
       - key: TRUST_PROXY
         value: "1"
