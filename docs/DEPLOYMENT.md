@@ -1,7 +1,8 @@
 # Deployment guide
 
-> **Status:** not deployed. Per the project brief, deployment waits for your approval of the locally tested build.
-> This guide describes a deployment that is compatible with the temporary-session design.
+> **Status:** chosen architecture — frontend on Vercel (project `leadpulseanalytics`, root `frontend`), Express API
+> on Render as one persistent instance (`render.yaml`). This guide describes a deployment that is compatible with the
+> temporary-session design.
 
 ## Architecture constraints that drive the hosting choice
 
@@ -46,11 +47,61 @@ Vercel → Project `leadpulseanalytics` → Settings:
 No `vercel.json`, rewrites or redirects are needed. Without `NEXT_PUBLIC_API_URL` the site loads but shows a
 "Reporting server not configured" banner (there is no localhost fallback in production builds).
 
-The Express backend cannot run on Vercel Functions (it keeps sessions in memory, uses worker threads and temp files and
-must be a single long-lived process). Deploy it separately (see below) with
-`CORS_ORIGINS=https://leadpulseanalytics.vercel.app` and `OPENAI_API_KEY` as a server-side secret.
+The frontend has no server-side calls to the API (no route handlers or server actions); the browser calls the API
+directly with CORS. Vercel service bindings therefore do not apply.
 
-## Backend
+### Why the API is not a Vercel service
+
+Vercel's multi-service `services` config (Beta) can host Express, but only as a Vercel Function, which conflicts with
+this API:
+
+| API requirement | Vercel Functions (also container runtime) |
+|---|---|
+| Uploads up to `MAX_FILE_SIZE_MB` (15) × `MAX_FILES_PER_SESSION` (20); multi-MB Excel downloads | 4.5 MB request and response body limit |
+| 12-hour sessions held in process memory | Instances scale down after 5 min without traffic |
+| One process that owns every session | Automatic scaling, no single-instance pinning |
+| Report history on disk | Read-only filesystem, scratch `/tmp` only |
+
+Running the API on Vercel would need sessions in an expiring store (e.g. Redis), direct-to-storage uploads and history
+in a database — a redesign that is not implemented.
+
+Only `leadpulseanalytics` should be connected to the repository. A second project that builds the repository root runs
+`npm run build` (backend + frontend) and produces no Next.js output; delete or disconnect it.
+
+## Backend on Render
+
+`render.yaml` (repository root) is a Render Blueprint for the API: one `starter` instance, built from the repository
+root so the workspace lockfile is used, health check `/api/health`, and a 1 GB disk at `/var/data` for `CONFIG_DIR`
+(mapping templates and report history only). The free plan is unsuitable: it spins down when idle, ending every
+session, and cannot attach a disk.
+
+1. Render → New → Blueprint → select this repository. Render validates `render.yaml` and creates `leadpulse-api`.
+2. Enter `OPENAI_API_KEY` when prompted (or leave it empty to disable AI insights).
+3. After the first deploy, copy the service URL (`https://<name>.onrender.com`) and check
+   `curl https://<name>.onrender.com/api/health` returns `"status":"ok"`.
+4. In Vercel → `leadpulseanalytics` → Environment Variables, set `NEXT_PUBLIC_API_URL` to that URL (Production and
+   Preview), then redeploy the frontend: the value is baked in at build time.
+5. If the frontend is served from another domain as well, add it to `CORS_ORIGINS` (comma-separated) in Render.
+
+A deploy or restart of the API ends active sessions (see Rollback).
+
+### Environment variables
+
+| Where | Variable | Value |
+|---|---|---|
+| Vercel (frontend) | `NEXT_PUBLIC_API_URL` | Render service URL, no trailing slash. Public by design; holds no secret. |
+| Render (API) | `NODE_ENV` | `production` |
+| Render (API) | `CORS_ORIGINS` | `https://leadpulseanalytics.vercel.app` |
+| Render (API) | `TRUST_PROXY` | `1` |
+| Render (API) | `CONFIG_DIR` | `/var/data/leadpulse` (on the persistent disk) |
+| Render (API) | `OPENAI_API_KEY` | secret, entered in the Render dashboard only |
+| Render (API) | `OPENAI_MODEL` | `gpt-5-mini` |
+| Render (API) | `NODE_VERSION` | `22` |
+| Render (API) | `PORT` | set by Render; the API reads it and binds `0.0.0.0` |
+
+All other settings (`SESSION_TTL_HOURS`, upload limits, `TEMP_DIR`, …) use the defaults in `backend/.env.example`.
+
+## Backend (any other host)
 
 ```bash
 cd backend
@@ -86,7 +137,7 @@ api.reports.example.com {
 
 With Nginx set `client_max_body_size` similarly and `proxy_read_timeout 300s` for large uploads.
 
-## Frontend
+## Frontend (any other host)
 
 ```bash
 cd frontend

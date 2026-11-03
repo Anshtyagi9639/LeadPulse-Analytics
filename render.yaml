@@ -1,0 +1,42 @@
+# Render Blueprint for the LeadPulse Express API (the Next.js frontend is deployed on Vercel from frontend/).
+# The API keeps reporting sessions in memory and uploads in a temp directory, so it must run as exactly one
+# long-lived instance. The persistent disk holds only non-lead data: mapping templates and report history
+# (metadata + aggregate KPIs). Secrets are entered in the Render dashboard (sync: false), never committed.
+services:
+  - type: web
+    name: leadpulse-api
+    runtime: node
+    # Paid instance: free instances spin down when idle (ending every session) and cannot attach a disk.
+    plan: starter
+    numInstances: 1
+    # Built from the repository root so the npm-workspaces lockfile is used.
+    buildCommand: npm ci --include=dev && npm run build -w backend
+    startCommand: node backend/dist/index.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - backend/**
+        - package.json
+        - package-lock.json
+        - render.yaml
+    disk:
+      name: leadpulse-config
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGINS
+        value: https://leadpulseanalytics.vercel.app
+      # Render terminates TLS in front of the service; one proxy hop gives rate limits the real client IP.
+      - key: TRUST_PROXY
+        value: "1"
+      - key: CONFIG_DIR
+        value: /var/data/leadpulse
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-5-mini
