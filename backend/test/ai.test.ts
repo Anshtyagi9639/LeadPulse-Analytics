@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+import { OpenAI } from 'openai';
 import request from 'supertest';
 import { afterEach, describe, expect, it } from 'vitest';
 import type { AiClient } from '../src/ai/insights.js';

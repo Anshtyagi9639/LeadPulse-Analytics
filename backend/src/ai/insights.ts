@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+import { OpenAI } from 'openai';
 import { z } from 'zod';
 import type { AppConfig } from '../config.js';
 import type { BreakdownRow, Report } from '../domain/kpi.js';
