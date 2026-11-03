@@ -1,6 +1,6 @@
 # Deployment guide
 
-> **Status:** chosen architecture — frontend on Vercel (project `leadpulseanalytics`, root `frontend`), Express API
+> **Status:** chosen architecture — frontend on Vercel (project `lead-pulse-analytics-e8c7`, root `frontend`), Express API
 > on Render as one persistent instance (`render.yaml`). This guide describes a deployment that is compatible with the
 > temporary-session design.
 
@@ -32,7 +32,7 @@ The repository is an npm-workspaces monorepo: the Next.js app is in `frontend/`,
 Vercel must build **only** `frontend/`; the root `package.json` is a workspace wrapper, not a Next.js app (building the
 repository root yields no pages and every URL returns `404 NOT_FOUND`).
 
-Vercel → Project `leadpulseanalytics` → Settings:
+Vercel → Project `lead-pulse-analytics-e8c7` → Settings:
 
 | Setting | Value |
 |---|---|
@@ -65,7 +65,7 @@ this API:
 Running the API on Vercel would need sessions in an expiring store (e.g. Redis), direct-to-storage uploads and history
 in a database — a redesign that is not implemented.
 
-Only `leadpulseanalytics` should be connected to the repository. A second project that builds the repository root runs
+Only `lead-pulse-analytics-e8c7` should be connected to the repository. A second project that builds the repository root runs
 `npm run build` (backend + frontend) and produces no Next.js output; delete or disconnect it.
 
 ## Backend on Render
@@ -79,7 +79,7 @@ session, and cannot attach a disk.
 2. Enter `OPENAI_API_KEY` when prompted (or leave it empty to disable AI insights).
 3. After the first deploy, copy the service URL (`https://<name>.onrender.com`) and check
    `curl https://<name>.onrender.com/api/health` returns `"status":"ok"`.
-4. In Vercel → `leadpulseanalytics` → Environment Variables, set `NEXT_PUBLIC_API_URL` to that URL (Production and
+4. In Vercel → `lead-pulse-analytics-e8c7` → Environment Variables, set `NEXT_PUBLIC_API_URL` to that URL (Production and
    Preview), then redeploy the frontend: the value is baked in at build time.
 5. If the frontend is served from another domain as well, add it to `CORS_ORIGINS` (comma-separated) in Render.
 
@@ -89,9 +89,9 @@ A deploy or restart of the API ends active sessions (see Rollback).
 
 | Where | Variable | Value |
 |---|---|---|
-| Vercel (frontend) | `NEXT_PUBLIC_API_URL` | Render service URL, no trailing slash. Public by design; holds no secret. |
+| Vercel (frontend) | `NEXT_PUBLIC_API_URL` | `https://leadpulse-analytics-1.onrender.com` (Render service URL, no trailing slash, without `/api`). Public by design; holds no secret. |
 | Render (API) | `NODE_ENV` | `production` |
-| Render (API) | `CORS_ORIGINS` | `https://leadpulseanalytics.vercel.app` |
+| Render (API) | `CORS_ORIGINS` | `https://lead-pulse-analytics-e8c7.vercel.app` — the exact browser origin(s), comma-separated, no `*`, no path. Required in production: the API refuses to start without it. |
 | Render (API) | `TRUST_PROXY` | `1` |
 | Render (API) | `CONFIG_DIR` | `/var/data/leadpulse` (on the persistent disk) |
 | Render (API) | `OPENAI_API_KEY` | secret, entered in the Render dashboard only |

@@ -73,6 +73,15 @@ export async function createApp(config: AppConfig, deps: AppDeps = {}) {
       maxAge: 600,
     }),
   );
+  // cors() answers allowed preflights itself and passes rejected ones on, where Express would reply 200 without
+  // CORS headers. Refuse them explicitly so a misconfigured origin is visible as a 403.
+  app.use((req, res, next) => {
+    if (req.method === 'OPTIONS' && req.headers.origin && req.headers['access-control-request-method']) {
+      res.status(403).json({ error: { code: 'CORS_ORIGIN_NOT_ALLOWED', message: 'This origin is not allowed to call the API.' } });
+      return;
+    }
+    next();
+  });
   app.use(express.json({ limit: '256kb' }));
   app.use('/api', rateLimit({ windowMs: 60_000, limit: 600, standardHeaders: 'draft-7', legacyHeaders: false, message: { error: { code: 'RATE_LIMITED', message: 'Too many requests. Slow down and try again shortly.' } } }));
 

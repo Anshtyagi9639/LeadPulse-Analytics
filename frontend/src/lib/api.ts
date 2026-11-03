@@ -46,6 +46,24 @@ export class ApiError extends Error {
 
 const NOT_CONFIGURED = "The reporting server is not configured for this deployment (NEXT_PUBLIC_API_URL is not set). Ask the administrator to set it and redeploy.";
 
+/**
+ * A failed fetch looks the same to the page whether the server is down, still waking up, or refused this site's
+ * origin (CORS), so the message names the server and all three causes instead of guessing one.
+ */
+function unreachable(action = "Cannot reach"): ApiError {
+  let host = API_URL;
+  try {
+    host = new URL(API_URL).host;
+  } catch {
+    /* keep the raw value */
+  }
+  return new ApiError(
+    0,
+    "NETWORK_ERROR",
+    `${action} the reporting server (${host}). It may be offline or starting up, or it may not allow this site's address (CORS). Try again in a minute; if it persists, ask the administrator.`,
+  );
+}
+
 function assertConfigured() {
   if (!API_CONFIGURED) throw new ApiError(0, "API_NOT_CONFIGURED", NOT_CONFIGURED);
 }
@@ -99,7 +117,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
       cache: "no-store",
     });
   } catch {
-    throw new ApiError(0, "NETWORK_ERROR", "Cannot reach the reporting server. Check that the backend is running.");
+    throw unreachable();
   }
   const text = await res.text();
   const body = text ? safeJson(text) : null;
@@ -138,7 +156,7 @@ export const api = {
       xhr.open("POST", `${API_URL}/api${s(id)}/files${replaceFileId ? `?replace=${replaceFileId}` : ""}`);
       xhr.setRequestHeader("X-Client-Id", clientId());
       xhr.upload.onprogress = (e) => e.lengthComputable && onProgress?.(Math.round((e.loaded / e.total) * 100));
-      xhr.onerror = () => reject(new ApiError(0, "NETWORK_ERROR", "Upload failed: cannot reach the reporting server."));
+      xhr.onerror = () => reject(unreachable("Upload failed: cannot reach"));
       xhr.onload = () => {
         const body = safeJson(xhr.responseText) as { error?: { code: string; message: string } } | null;
         if (xhr.status >= 200 && xhr.status < 300) resolve(body as { session: Session; added: string[] });
@@ -228,7 +246,7 @@ export async function download(path: string, init?: RequestInit): Promise<string
   try {
     res = await fetch(`${API_URL}/api${path}`, { cache: "no-store", ...init, headers: { "X-Client-Id": clientId(), ...(init?.body ? { "Content-Type": "application/json" } : {}) } });
   } catch {
-    throw new ApiError(0, "NETWORK_ERROR", "Cannot reach the reporting server.");
+    throw unreachable();
   }
   if (!res.ok) {
     const body = safeJson(await res.text()) as { error?: { code: string; message: string } } | null;

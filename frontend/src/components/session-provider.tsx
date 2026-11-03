@@ -127,7 +127,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   );
 
   useEffect(() => {
-    api.meta().then(setMeta).catch(() => toast.error("Cannot reach the reporting server. Start the backend and reload."));
+    api.meta().then(setMeta).catch((e) => toast.error(e instanceof Error ? e.message : "Cannot reach the reporting server."));
     const id = storedId();
     (id ? api.getSession(id).then(applySession) : Promise.resolve())
       .catch((e) => {

@@ -55,10 +55,21 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env, overrides: Part
     throw new Error(`Invalid environment configuration: ${issues}`);
   }
   const cfg = parsed.data;
+  // Browsers send the Origin header without a trailing slash, so "https://app.example/" would never match.
+  const corsOrigins = cfg.CORS_ORIGINS.split(',').map((s) => s.trim().replace(/\/+$/, '')).filter(Boolean);
+  if (cfg.NODE_ENV === 'production') {
+    // The localhost default would silently block every real browser request, and "*" would admit any site.
+    if (!env.CORS_ORIGINS?.trim()) {
+      throw new Error('Invalid environment configuration: CORS_ORIGINS must list the frontend origin(s) in production.');
+    }
+    if (corsOrigins.includes('*')) {
+      throw new Error('Invalid environment configuration: CORS_ORIGINS must not contain "*" in production.');
+    }
+  }
   return {
     ...cfg,
     OPENAI_API_KEY: cfg.OPENAI_API_KEY?.trim() || undefined,
-    corsOrigins: cfg.CORS_ORIGINS.split(',').map((s) => s.trim()).filter(Boolean),
+    corsOrigins,
     ...overrides,
   };
 }
