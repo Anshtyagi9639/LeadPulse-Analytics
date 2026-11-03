@@ -85,6 +85,28 @@ session, and cannot attach a disk.
 
 A deploy or restart of the API ends active sessions (see Rollback).
 
+### Service created by hand (not from the Blueprint)
+
+A Render web service created through New → Web Service does not read `render.yaml`; set these in its Settings:
+
+| Setting | Root Directory empty (repository root, recommended) | Root Directory `backend` |
+|---|---|---|
+| Build Command | `npm ci --include=dev && npm run build -w backend` | `npm install --include=dev && npm run build` |
+| Start Command | `node backend/dist/index.js` | `node dist/index.js` |
+| Health Check Path | `/api/health` | `/api/health` |
+
+Both variants were tested with `NODE_ENV=production` set during the build. `--include=dev` is required because the
+TypeScript compiler is a dev dependency. Do not use `npm run dev` (a file watcher) as the start command. The
+`backend/` variant has no lockfile of its own, so it resolves dependency versions at build time; prefer the
+repository-root variant.
+
+The API starts one HTTP server on `PORT` (Render injects it, normally 10000; the local fallback 4000 applies only when
+`PORT` is unset) and binds `0.0.0.0`, which Render requires.
+
+**Deployment order:** set the environment variables below first, then deploy. In production the API exits at start-up
+with `CORS_ORIGINS must list the frontend origin(s) in production` when `CORS_ORIGINS` is missing; Render then reports
+the deploy as failed and keeps serving the previous one.
+
 ### Environment variables
 
 | Where | Variable | Value |

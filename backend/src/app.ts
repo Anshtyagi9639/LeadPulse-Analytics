@@ -68,7 +68,9 @@ export async function createApp(config: AppConfig, deps: AppDeps = {}) {
         if (!origin || config.corsOrigins.includes('*') || config.corsOrigins.includes(origin)) return cb(null, true);
         return cb(null, false);
       },
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      // The portal sends only these; it uses no cookies or Authorization header, so credentials stay disabled.
+      allowedHeaders: ['Content-Type', 'X-Client-Id'],
       exposedHeaders: ['Content-Disposition'],
       maxAge: 600,
     }),

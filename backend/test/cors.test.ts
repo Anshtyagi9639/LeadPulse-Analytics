@@ -27,7 +27,7 @@ describe('CORS', () => {
     expect(res.status).toBe(204);
     expect(res.headers['access-control-allow-origin']).toBe(ALLOWED);
     expect(res.headers['access-control-allow-methods']).toContain('POST');
-    expect(res.headers['access-control-allow-headers']).toContain('x-client-id');
+    expect(res.headers['access-control-allow-headers']).toBe('Content-Type,X-Client-Id');
     // No cookies are used (the browser id travels in X-Client-Id), so credentials stay off.
     expect(res.headers['access-control-allow-credentials']).toBeUndefined();
   });
